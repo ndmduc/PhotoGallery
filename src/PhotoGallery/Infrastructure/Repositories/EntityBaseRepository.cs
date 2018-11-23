@@ -62,54 +62,52 @@ namespace PhotoGallery.Infrastructure.Repositories
 
         public T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
         {
-            IQueryable query = this.context.Set<T>();
+            IQueryable<T> query = this.context.Set<T>();
             foreach (var item in includeProperties)
             {
-                query =
+                query = query.Include(item);
             }
+
+            return query.Where(predicate).FirstOrDefault();
         }
 
-        public Task<T> GetSingleAsync(int id)
+        public async Task<T> GetSingleAsync(int id)
         {
-            throw new NotImplementedException();
+            return await this.context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public void Add(T entity)
+        public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return this.context.Set<T>().Where(predicate);
         }
 
-        
-
-        
-
-        public void Commit()
+        public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await this.context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public void Delete(T entity)
+        public virtual void Add(T entity)
         {
-            throw new NotImplementedException();
+            var dbEntity = this.context.Entry<T>(entity);
+            this.context.Set<T>().Add(entity);
         }
 
-        public void Edit(T entity)
+        public virtual void Edit(T entity)
         {
-            throw new NotImplementedException();
+            var dbEntity = this.context.Entry<T>(entity);
+            dbEntity.State = EntityState.Modified;
         }
 
-        public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public virtual void Delete(T entity)
         {
-            throw new NotImplementedException();
+            var dbEntity = this.context.Entry<T>(entity);
+            dbEntity.State = EntityState.Deleted;
         }
 
-        public Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+
+        public virtual void Commit()
         {
-            throw new NotImplementedException();
+            this.context.SaveChanges();
         }
-
-        
-
-       
     }
 }
