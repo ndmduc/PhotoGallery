@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PhotoGallery.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace PhotoGallery.Infrastructure
 {
@@ -21,6 +18,10 @@ namespace PhotoGallery.Infrastructure
         public DbSet<UserRole> UserRoles { get; set; }
 
         public DbSet<Error> Errors { get; set; }
+
+        //public PhotoGalleryContext() : base()
+        //{
+        //}
 
         public PhotoGalleryContext(DbContextOptions opt) : base(opt)
         {
@@ -41,7 +42,7 @@ namespace PhotoGallery.Infrastructure
             // Album
             modelBuilder.Entity<Album>().Property(p => p.Title).HasMaxLength(100);
             modelBuilder.Entity<Album>().Property(p => p.Description).HasMaxLength(500);
-            modelBuilder.Entity<Album>().HasMany(p => p.Photos).WithOne(p=>p.Album);
+            modelBuilder.Entity<Album>().HasMany(p => p.Photos).WithOne(p => p.Album);
 
             // User
             modelBuilder.Entity<User>().Property(p => p.Username).IsRequired().HasMaxLength(100);

@@ -10,11 +10,11 @@ var ts = require('gulp-typescript'),
     del = require('del'),
     path = require('path');
 
-eval("var project = " + fs.readFileSync("./project.json"));
-var lib = "./" + project.webroot + "/lib/";
+//eval("var project = " + fs.readFileSync("./project.json"));
+var lib = "./wwwroot/lib/";
 
 var paths = {
-    npm: './node_modules',
+    npm: './node_modules/',
     tsSource: './wwwroot/app/**/*.ts',
     tsOutput: lib + 'spa/',
     tsDef: lib + 'definitions/',
@@ -88,4 +88,4 @@ gulp.task('clean-lib', function () {
     return del([lib]);
 });
 
-gulp.task('buld-spa', ['setup-vendors', 'compile-typescript']);
+gulp.task('build-spa', ['setup-vendors', 'compile-typescript']);

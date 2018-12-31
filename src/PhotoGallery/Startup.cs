@@ -35,7 +35,8 @@ namespace PhotoGallery
             {
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                //builder.AddUserSecrets();
+                builder.AddUserSecrets<Startup>();
             }
 
             builder.AddEnvironmentVariables();
@@ -48,24 +49,23 @@ namespace PhotoGallery
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //string sqlConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
-            //bool useInMemoryProvider = bool.Parse(Configuration["Data:PhotoGalleryConnection:InMemoryProvider"]);
+            string sqlConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            bool useInMemoryProvider = bool.Parse(Configuration["Data:PhotoGalleryConnection:InMemoryProvider"]);
 
-            //services.AddDbContext<PhotoGalleryContext>(options =>
-            //{
-            //    switch (useInMemoryProvider)
-            //    {
-            //        case true:
-            //            options.UseInMemoryDatabase();
-            //            break;
-            //        default:
-            //            options.UseSqlServer(sqlConnectionString);
-            //            break;
-            //    }
-            //});
+            services.AddDbContext<PhotoGalleryContext>(options => {
+                switch (useInMemoryProvider)
+                {
+                    case true:
+                        options.UseInMemoryDatabase();
+                        break;
+                    default:
+                        options.UseSqlServer(sqlConnectionString);
+                        break;
+                }
+            });
 
-            services.AddDbContext<PhotoGalleryContext>(opt =>
-                                    opt.UseSqlServer(Configuration["Data:PhotoGalleryConnection:ConnectionString"]));
+            //services.AddDbContext<PhotoGalleryContext>(opt =>
+            //                        opt.UseSqlServer(Configuration["Data:PhotoGalleryConnection:ConnectionString"]));
             // Repositories
             services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<IAlbumRepository, AlbumRepository>();
@@ -81,12 +81,12 @@ namespace PhotoGallery
             services.AddAuthentication();
 
             // Polices
-            services.AddAuthentication(options =>
+            services.AddAuthorization(options =>
             {
                 // inline policies
                 options.AddPolicy("AdminOnly", policy => { policy.RequireClaim(ClaimTypes.Role, "Admin"); });
             });
-
+            
             // Add MVC servies to the services container
             services.AddMvc().AddJsonOptions(opt =>
             {
