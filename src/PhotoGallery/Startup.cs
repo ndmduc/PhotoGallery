@@ -11,6 +11,7 @@ using System.IO;
 using Newtonsoft.Json.Serialization;
 using PhotoGallery.Infrastructure.Repositories.Abstract;
 using PhotoGallery.Infrastructure.Services.Abstract;
+using PhotoGallery.Infrastructure.Mappings;
 
 namespace PhotoGallery
 {
@@ -107,7 +108,7 @@ namespace PhotoGallery
             // this will serve up wwwroot.
             app.UseStaticFiles();
 
-            //AutoMapperConfiguration.Configure();
+            AutoMapperConfiguration.Configure();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions { AutomaticAuthenticate = true, AutomaticChallenge = true });
 

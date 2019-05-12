@@ -17,13 +17,20 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Content Include="wwwroot\app\components\home.component.html" />
+    <Content Include="wwwroot\app\components\home.component.ts" />
+    <Content Include="wwwroot\app\components\photos.component.html" />
+    <Content Include="wwwroot\app\components\photos.component.ts" />
+    <Content Include="wwwroot\app\core\common\paginated.ts" />
     <Content Include="wwwroot\app\core\domain\album.ts" />
     <Content Include="wwwroot\app\core\domain\photo.ts" />
     <Content Include="wwwroot\app\core\domain\registration.ts" />
     <Content Include="wwwroot\app\core\domain\user.ts" />
     <Content Include="wwwroot\app\core\services\data.service.ts" />
     <Content Include="wwwroot\app\core\services\membership.service.ts" />
+    <Content Include="wwwroot\app\core\services\notification.service.ts" />
     <Content Include="wwwroot\app\core\services\utility.service.ts" />
+    <Content Include="wwwroot\app\routes.ts" />
     <Content Include="wwwroot\css\site.css" />
     <Content Include="wwwroot\file.ts" />
   </ItemGroup>
