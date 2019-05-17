@@ -17,6 +17,14 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Content Include="wwwroot\app\components\account\login.component.html" />
+    <Content Include="wwwroot\app\components\account\login.component.ts" />
+    <Content Include="wwwroot\app\components\account\register.component.html" />
+    <Content Include="wwwroot\app\components\account\register.component.ts" />
+    <Content Include="wwwroot\app\components\account\routes.ts" />
+    <Content Include="wwwroot\app\components\album-photos.component.ts" />
+    <Content Include="wwwroot\app\components\albums.component.html" />
+    <Content Include="wwwroot\app\components\albums.component.ts" />
     <Content Include="wwwroot\app\components\home.component.html" />
     <Content Include="wwwroot\app\components\home.component.ts" />
     <Content Include="wwwroot\app\components\photos.component.html" />
