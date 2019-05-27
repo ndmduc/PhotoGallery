@@ -17,11 +17,18 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Content Include="wwwroot\app\app.component.html" />
+    <Content Include="wwwroot\app\app.component.ts" />
+    <Content Include="wwwroot\app\app.module.ts" />
+    <Content Include="wwwroot\app\components\account\account.component.html" />
+    <Content Include="wwwroot\app\components\account\account.component.ts" />
+    <Content Include="wwwroot\app\components\account\account.module.ts" />
     <Content Include="wwwroot\app\components\account\login.component.html" />
     <Content Include="wwwroot\app\components\account\login.component.ts" />
     <Content Include="wwwroot\app\components\account\register.component.html" />
     <Content Include="wwwroot\app\components\account\register.component.ts" />
     <Content Include="wwwroot\app\components\account\routes.ts" />
+    <Content Include="wwwroot\app\components\album-photos.component.html" />
     <Content Include="wwwroot\app\components\album-photos.component.ts" />
     <Content Include="wwwroot\app\components\albums.component.html" />
     <Content Include="wwwroot\app\components\albums.component.ts" />
@@ -38,6 +45,7 @@
     <Content Include="wwwroot\app\core\services\membership.service.ts" />
     <Content Include="wwwroot\app\core\services\notification.service.ts" />
     <Content Include="wwwroot\app\core\services\utility.service.ts" />
+    <Content Include="wwwroot\app\main.ts" />
     <Content Include="wwwroot\app\routes.ts" />
     <Content Include="wwwroot\css\site.css" />
     <Content Include="wwwroot\file.ts" />
